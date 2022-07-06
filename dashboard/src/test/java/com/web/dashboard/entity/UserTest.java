@@ -7,7 +7,8 @@ public class UserTest {
 	
 	@Test
 	void testEqualsName() {
-		User user = new User("UserName1");
-		Assertions.assertEquals("UserName1", user.getName());		
+		User user = new User();
+		user.setFirstName("FirstName");
+		Assertions.assertEquals("FirstName", user.getFirstName());		
 	}
 }
