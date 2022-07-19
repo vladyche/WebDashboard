@@ -4,14 +4,17 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private long id;
 	
@@ -26,6 +29,9 @@ public class User {
 	
 	@Column(name = "email")
 	private String email;
+	
+	@Column(name = "status")
+	private boolean status;
 	
 	public User(){}
 
@@ -69,9 +75,17 @@ public class User {
 		this.email = email;
 	}
 
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, id, lastName, patronymic);
+		return Objects.hash(email, firstName, id, lastName, patronymic, status);
 	}
 
 	@Override
@@ -84,14 +98,13 @@ public class User {
 			return false;
 		User other = (User) obj;
 		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName) && id == other.id
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(patronymic, other.patronymic);
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(patronymic, other.patronymic)
+				&& status == other.status;
 	}
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", patronymic=" + patronymic
-				+ ", email=" + email + "]";
-	}	
-	
-	
+				+ ", email=" + email + ", status=" + status + "]";
+	}
 }
