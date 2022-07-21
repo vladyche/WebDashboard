@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +34,10 @@ public class User {
 	
 	@Column(name = "status")
 	private boolean status;
+	
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+	private Role role;
 	
 	public User(){}
 
@@ -81,6 +87,14 @@ public class User {
 
 	public void setStatus(boolean status) {
 		this.status = status;
+	}
+	
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Override
