@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,6 +21,12 @@ public class User {
 	@Column(name = "id")
 	private long id;
 	
+	@Column(name = "username")
+	private String username;
+	
+	@Column(name = "password")
+	private String password;
+	
 	@Column(name = "first_name")
 	private String firstName;
 	
@@ -35,7 +42,7 @@ public class User {
 	@Column(name = "status")
 	private boolean status;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "role_id")
 	private Role role;
 	
@@ -43,6 +50,22 @@ public class User {
 
 	public long getId() {
 		return id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public void setId(long id) {
@@ -99,7 +122,7 @@ public class User {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, id, lastName, patronymic, status);
+		return Objects.hash(email, firstName, id, lastName, password, patronymic, status, username);
 	}
 
 	@Override
@@ -112,13 +135,16 @@ public class User {
 			return false;
 		User other = (User) obj;
 		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName) && id == other.id
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(patronymic, other.patronymic)
-				&& status == other.status;
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
+				&& Objects.equals(patronymic, other.patronymic) && status == other.status
+				&& Objects.equals(username, other.username);
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", patronymic=" + patronymic
-				+ ", email=" + email + ", status=" + status + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", patronymic=" + patronymic + ", email=" + email + ", status=" + status
+				+ "]";
 	}
+
 }

@@ -92,8 +92,8 @@ public class RoleDaoTest {
 		System.out.println("");	
 		
 		Role role = new Role();
-		role.setId(4);
-		role.setName("SUPERADMIN");
+		role.setId(55);
+		role.setName("SUPERMANAGER");
 		
 		roleDao.delete(role);
 	}

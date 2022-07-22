@@ -8,6 +8,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.web.dashboard.config.AppBeans;
 
 public class DatabaseConnectionTest {
 	private String url = "jdbc:postgresql://localhost:5432/test_web_dashboard";
@@ -41,4 +44,10 @@ public class DatabaseConnectionTest {
 			System.out.println("Closed!");
 		}
 	}
+	
+	@Test
+	void installDB() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class);		
+	}
+	
 }
