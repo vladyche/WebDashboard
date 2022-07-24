@@ -10,7 +10,9 @@ import com.web.dashboard.dao.impl.RoleDaoImpl;
 import com.web.dashboard.dao.impl.UserDaoImpl;
 import com.web.dashboard.entity.Role;
 import com.web.dashboard.entity.User;
+import com.web.dashboard.service.RoleService;
 import com.web.dashboard.service.UserService;
+import com.web.dashboard.service.impl.RoleServiceImpl;
 import com.web.dashboard.service.impl.UserServiceImpl;
 
 @Configuration
@@ -31,13 +33,17 @@ public class AppBeans {
     }
     
     @Bean
+    public RoleDao roleDao() {
+    	return new RoleDaoImpl(sessionFactory());
+    }
+    
+    @Bean
     public UserService userService() {
     	return new UserServiceImpl(userDao());
     }
     
     @Bean
-    public RoleDao roleDao() {
-    	return new RoleDaoImpl(sessionFactory());
+    public RoleService roleService() {
+    	return new RoleServiceImpl(roleDao());
     }
-    
 }
