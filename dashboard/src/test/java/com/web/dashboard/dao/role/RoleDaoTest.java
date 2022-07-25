@@ -61,6 +61,15 @@ public class RoleDaoTest {
 	}
 	
 	@Test
+	public void findAll() {
+		System.out.println("");
+		System.out.println(">>>>>>>>>>findAll");	
+		System.out.println("");
+		
+		Assertions.assertEquals(4, roleDao.findAll().size());
+	}
+	
+	@Test
 	public void saveTest() {
 		System.out.println("");
 		System.out.println(">>>>>>>>>>saveTest");	

@@ -1,5 +1,7 @@
 package com.web.dashboard.service.impl;
 
+import java.util.List;
+
 import com.web.dashboard.dao.RoleDao;
 import com.web.dashboard.entity.Role;
 import com.web.dashboard.service.RoleService;
@@ -21,6 +23,11 @@ public class RoleServiceImpl implements RoleService {
 	@Override
 	public Role readById(int id) {
 		return roleDao.findById(id);
+	}
+	
+	@Override
+	public List<Role> readAll() {
+		return roleDao.findAll();
 	}
 
 	@Override
