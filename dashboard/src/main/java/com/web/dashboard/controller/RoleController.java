@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.web.dashboard.config.AppBeans;
+import com.web.dashboard.config.beans.AppBeans;
 import com.web.dashboard.entity.Role;
 import com.web.dashboard.service.RoleService;
 import com.web.dashboard.service.impl.RoleServiceImpl;
@@ -20,9 +20,14 @@ import com.web.dashboard.service.impl.RoleServiceImpl;
 @Controller
 @RequestMapping("/role")
 public class RoleController {
+	
+	@GetMapping("")
+	public String roleRootPath() {
+		return "redirect:/role/all";
+	}
 		
 	@GetMapping("/all")
-	public String rolePage(Model model) {
+	public String rolesPage(Model model) {
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class)) {
 			RoleService roleService = context.getBean("roleService", RoleServiceImpl.class);
 			
@@ -33,7 +38,21 @@ public class RoleController {
 			e.printStackTrace();
 		}
 		
-		return "./role/role";
+		return "./role/roles";
+	}
+	
+	@GetMapping("/{id}")
+	public String rolePage(@PathVariable("id") int id, Model model) {
+		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class)) {
+			RoleService roleService = context.getBean("roleService", RoleServiceImpl.class);
+			
+			model.addAttribute("role", roleService.readById(id));
+			
+		} catch (BeansException e) {
+			e.printStackTrace();
+		}
+		
+		return "./role/role-page";
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -53,8 +72,19 @@ public class RoleController {
 		return "redirect:/role/all";		
 	}
 	
+	@GetMapping("/create")
+	public String createPage(Model model) {
+		
+		model.addAttribute("role", new Role());
+		
+		return "./role/create-page";
+	}
+	
 	@PostMapping("/create")
-	public String createRole(@Validated @ModelAttribute("role") Role role, BindingResult result) {
+	public String createRole(@Validated 
+							 @ModelAttribute("role") Role role, 
+							 BindingResult result) {
+		
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class)) {
 			RoleService roleService = context.getBean("roleService", RoleServiceImpl.class);
 			
@@ -68,7 +98,9 @@ public class RoleController {
 	}
 	
 	@GetMapping("/update/{id}")
-	public String updateRolePage(@PathVariable int id, Model model) {				
+	public String updateRolePage(@PathVariable int id, 
+			                     Model model) {
+		
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class)) {
 			RoleService roleService = context.getBean("roleService", RoleServiceImpl.class);
 
@@ -78,11 +110,14 @@ public class RoleController {
 			e.printStackTrace();
 		}
 		
-		return "./role/update";		
+		return "./role/role-update";		
 	}
 	
 	@PostMapping("/update")
-	public String updateRole(@Validated @ModelAttribute("role") Role role, BindingResult result) {
+	public String updateRole(@Validated 
+			                 @ModelAttribute("role") Role role, 
+			                 BindingResult result) {
+		
 		try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AppBeans.class)) {
 			RoleService roleService = context.getBean("roleService", RoleServiceImpl.class);
 			

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.web.dashboard.config.AppBeans;
+import com.web.dashboard.config.beans.AppBeans;
 import com.web.dashboard.entity.Role;
 import com.web.dashboard.entity.User;
 import com.web.dashboard.service.impl.UserServiceImpl;
@@ -46,7 +46,7 @@ public class UserServiceTest {
 	
 	@Test
 	void readAll() {
-		Assertions.assertEquals(10, userService.readAll().size());
+		Assertions.assertEquals(10, userService.readAllActive().size());
 	}
 	
 }

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.web.dashboard.config.AppBeans;
+import com.web.dashboard.config.beans.AppBeans;
 import com.web.dashboard.entity.Role;
 import com.web.dashboard.service.impl.RoleServiceImpl;
 

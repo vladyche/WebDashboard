@@ -10,7 +10,7 @@ import org.hibernate.cfg.Configuration;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.web.dashboard.config.AppBeans;
+import com.web.dashboard.config.beans.AppBeans;
 
 public class DatabaseConnectionTest {
 	private String url = "jdbc:postgresql://localhost:5432/test_web_dashboard";

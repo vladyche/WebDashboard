@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user</title>
+</head>
+
+<body>
+<h1>user page</h1>
+
+<div style="padding: 20px 5px;"><a href="./create">Create new user</a></div>
+
+<table>
+	<tr th:each="user: ${usersActive}">
+		<td th:text="${user.id}"></td>
+		<td th:text="${user.username}"></td>
+		<td th:text="${user.password}"></td>
+		<td th:text="${user.firstName}"></td>
+		<td th:text="${user.lastName}"></td>
+		<td th:text="${user.patronymic}"></td>
+		<td th:text="${user.email}"></td>
+		<td th:text="${user.role.name}"></td>
+        <td><a th:href="@{|/user/delete/mark/${user.id}|}">Delete</a></td>
+		<td><a th:href="@{|/user/update/${user.id}|}">Edit</a></td>
+	</tr>
+</table>
+
+<div style="padding: 20px 5px;"></div>
+
+<table>
+	<tr th:each="user: ${usersInactive}">
+		<td th:text="${user.id}"></td>
+		<td th:text="${user.username}"></td>
+		<td th:text="${user.password}"></td>
+		<td th:text="${user.firstName}"></td>
+		<td th:text="${user.lastName}"></td>
+		<td th:text="${user.patronymic}"></td>
+		<td th:text="${user.email}"></td>
+		<td th:text="${user.role.name}"></td>
+        <td><a th:href="@{|/user/delete/completely/${user.id}|}">Delete Completely</a></td>
+		<td><a th:href="@{|/user/update/${user.id}|}">Edit</a></td>
+	</tr>
+</table>
+
+</body>
+</html>

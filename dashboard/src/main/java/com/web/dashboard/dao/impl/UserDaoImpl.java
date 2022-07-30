@@ -131,14 +131,16 @@ public class UserDaoImpl implements UserDao{
 	}
 	
 	@Override
-	public List<User> findAll() {		
+	public List<User> findAllActive() {		
 		List<User> users = null;
 		
         try (Session session = sessionFactory.getCurrentSession()) {
             session.beginTransaction();
             
             users = new LinkedList<User>();            
-			users = session.createQuery("from User", User.class).getResultList();
+			users = session.createQuery("from User where status = :status", User.class)
+					.setParameter("status", true)
+					.getResultList();
 			
             session.getTransaction().commit();
         } catch (Exception e) {
@@ -149,4 +151,27 @@ public class UserDaoImpl implements UserDao{
         
 		return users;
 	}
+	
+	@Override
+	public List<User> findAllInactive() {		
+		List<User> users = null;
+		
+        try (Session session = sessionFactory.getCurrentSession()) {
+            session.beginTransaction();
+            
+            users = new LinkedList<User>();            
+			users = session.createQuery("from User where status = :status", User.class)
+					.setParameter("status", false)
+					.getResultList();
+			
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            e.printStackTrace();            
+        } finally {
+            sessionFactory.close();
+        }
+        
+		return users;
+	}
+
 }

@@ -1,4 +1,4 @@
-package com.web.dashboard.config;
+package com.web.dashboard.config.mvc;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

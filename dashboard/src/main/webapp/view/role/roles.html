@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>role</title>
+</head>
+
+<body>
+	<h1>role page</h1>
+	
+	<div style="padding: 25px 5px;"><a href="./create">Create new Role</a></div>
+	
+	<table>
+		<tr th:each="role: ${roles}">
+			<td th:text="${role.id}" /></td>
+			<td th:text="${role.name}" /></td>
+			<td><a th:href="@{|/role/${role.id}|}">Role</a></td>
+		</tr>
+	</table>
+        
+</body>
+</html>

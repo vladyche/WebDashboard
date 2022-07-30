@@ -11,5 +11,6 @@ public interface UserDao {
 	User update(User user);
 	void deleteCompletely(User user);
 	void markForDelete(long id);
-	List<User> findAll();
+	List<User> findAllActive();
+	List<User> findAllInactive();
 }

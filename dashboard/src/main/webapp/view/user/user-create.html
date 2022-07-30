@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user</title>
+</head>
+
+<body>
+	<h1>User create page</h1>
+
+    <form th:action="@{/user/create}" th:object="${user}" method="post">       
+        <div>
+            <div>
+                <label for="name">Username: </label>
+                <input type="text" th:field="*{username}">
+            </div>
+        </div>
+        
+        <div>
+            <div>
+                <label for="name">Password: </label>
+                <input type="text" th:field="*{password}">
+            </div>
+        </div>
+        
+        <div>
+            <div>
+                <label for="name">FirstName: </label>
+                <input type="text" th:field="*{firstName}">
+            </div>
+        </div>
+        
+        <div>
+            <div>
+                <label for="name">LastName: </label>
+                <input type="text" th:field="*{lastName}">
+            </div>
+        </div>
+        
+        <div>
+            <div>
+                <label for="name">Patronymic: </label>
+                <input type="text" th:field="*{patronymic}">
+            </div>
+        </div>
+        
+        <div>
+            <div>
+                <label for="name">Email: </label>
+                <input type="text" th:field="*{email}">
+            </div>
+        </div>
+        
+        <div>
+            <div>
+                <label for="name">Role: </label>
+                
+                <select name="roleId" id="role">
+                    <option th:selected="true" value="">Select Role for User</option>
+	                <option th:each="role: ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <input type="submit" value="CREATE">
+        </div>
+    </form>
+    
+</body>
+</html>

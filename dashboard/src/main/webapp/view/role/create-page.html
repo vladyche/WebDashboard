@@ -8,16 +8,7 @@
 </head>
 
 <body>
-	<h1>role page</h1>
-	
-	<table>
-		<tr th:each="role: ${roles}">
-			<td th:text="${role.id}" /></td>
-			<td th:text="${role.name}" /></td>
-			<td><a th:href="@{|/role/delete/${role.id}|}">Delete</a></td>
-			<td><a th:href="@{|/role/update/${role.id}|}">Edit</a></td>
-		</tr>
-	</table>
+	<h1>role create</h1>
 
     <form th:action="@{/role/create}" th:object="${role}" method="post">
         <div>

@@ -9,7 +9,8 @@ public interface UserService {
 	User readById(long id);
 	User readByEmail(String email);
 	User update(User user);
-	List<User> readAll();
+	List<User> readAllActive();
+	List<User> readAllInactive();
 	void deleteCompletely(User user);
-	void markForDelete(long id);	
+	void markForDelete(long id);
 }

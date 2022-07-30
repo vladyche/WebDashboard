@@ -1,4 +1,4 @@
-package com.web.dashboard.config;
+package com.web.dashboard.config.mvc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

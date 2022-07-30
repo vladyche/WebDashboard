@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.web.dashboard.config.AppBeans;
+import com.web.dashboard.config.beans.AppBeans;
 import com.web.dashboard.dao.UserDao;
 import com.web.dashboard.dao.impl.UserDaoImpl;
 import com.web.dashboard.entity.Role;
@@ -150,7 +150,7 @@ public class UserDaoTest {
 		System.out.println(">>>>>>>testUserFindAll");
 		System.out.println();
 		
-		Assertions.assertEquals(10, userDao.findAll().size());
+		Assertions.assertEquals(10, userDao.findAllActive().size());
 	}
 
 	@Test

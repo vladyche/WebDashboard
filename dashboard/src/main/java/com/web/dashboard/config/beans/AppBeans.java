@@ -1,4 +1,4 @@
-package com.web.dashboard.config;
+package com.web.dashboard.config.beans;
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +12,10 @@ import com.web.dashboard.entity.Role;
 import com.web.dashboard.entity.User;
 import com.web.dashboard.service.RoleService;
 import com.web.dashboard.service.UserService;
+import com.web.dashboard.service.UserStatusList;
 import com.web.dashboard.service.impl.RoleServiceImpl;
 import com.web.dashboard.service.impl.UserServiceImpl;
+import com.web.dashboard.service.impl.UserStatusListImpl;
 
 @Configuration
 public class AppBeans {
@@ -46,4 +48,10 @@ public class AppBeans {
     public RoleService roleService() {
     	return new RoleServiceImpl(roleDao());
     }
+    
+    @Bean
+    public UserStatusList userStatusList() {
+    	return new UserStatusListImpl();
+    }
+    
 }
